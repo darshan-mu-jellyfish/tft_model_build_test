@@ -16,3 +16,6 @@ substitutions:
   _SERVICE_NAME: forecasting
   _AR_REPO: forecasting-repo   # <-- Artifact Registry repo name
   _AR_REGION: us-central1      # <-- adjust region where AR repo exists
+
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
