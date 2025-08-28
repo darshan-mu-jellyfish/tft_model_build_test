@@ -8,6 +8,7 @@ steps:
       - --dockerfile=Dockerfile       # Dockerfile inside forecasting/
       - --cache=true
       - --cache-ttl=12h
+      - --verbosity=info
 
 images:
   - europe-west1-docker.pkg.dev/tr-tech-dds-dev/forecasting/tft:$SHORT_SHA
@@ -16,6 +17,7 @@ images:
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
   machineType: E2_HIGHMEM_16
+  logging: CLOUD_LOGGING_ONLY 
 
 substitutions:
   _AR_REGION: europe-west1
