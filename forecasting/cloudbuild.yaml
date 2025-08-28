@@ -2,16 +2,16 @@ steps:
   - id: Build image
     name: 'gcr.io/kaniko-project/executor:latest'
     args:
-      - --destination=europe-west1-docker.pkg.dev/tr-tech-dds-dev/${_AR_REPO}/${_IMAGE_NAME}:$SHORT_SHA
-      - --destination=europe-west1-docker.pkg.dev/tr-tech-dds-dev/${_AR_REPO}/${_IMAGE_NAME}:latest
-      - --context=.
-      - --dockerfile=forecasting/Dockerfile
+      - --destination=europe-west1-docker.pkg.dev/tr-tech-dds-dev/forecasting/tft:$SHORT_SHA
+      - --destination=europe-west1-docker.pkg.dev/tr-tech-dds-dev/forecasting/tft:latest
+      - --context=forecasting         # Context points to folder containing Dockerfile + requirements.txt
+      - --dockerfile=Dockerfile       # Dockerfile inside forecasting/
       - --cache=true
       - --cache-ttl=12h
 
 images:
-  - europe-west1-docker.pkg.dev/tr-tech-dds-dev/${_AR_REPO}/${_IMAGE_NAME}:$SHORT_SHA
-  - europe-west1-docker.pkg.dev/tr-tech-dds-dev/${_AR_REPO}/${_IMAGE_NAME}:latest
+  - europe-west1-docker.pkg.dev/tr-tech-dds-dev/forecasting/tft:$SHORT_SHA
+  - europe-west1-docker.pkg.dev/tr-tech-dds-dev/forecasting/tft:latest
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
@@ -19,5 +19,5 @@ options:
 
 substitutions:
   _AR_REGION: europe-west1
-  _AR_REPO: forecasting        # make sure this AR repo exists in europe-west1
+  _AR_REPO: forecasting
   _IMAGE_NAME: tft
