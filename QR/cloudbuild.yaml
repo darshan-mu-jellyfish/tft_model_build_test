@@ -1,0 +1,18 @@
+steps:
+  # Step 1: Build the Docker image using Kaniko (no local Docker needed)
+  - name: 'gcr.io/kaniko-project/executor:latest'
+    args:
+      - --destination=${_AR_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE_NAME}:$SHORT_SHA
+      - --cache=true
+      - --cache-ttl=12h
+      - --context=forecasting
+      - --dockerfile=forecasting/Dockerfile
+
+images:
+  - ${_AR_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE_NAME}:$SHORT_SHA
+  - ${_AR_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE_NAME}:latest
+
+substitutions:
+  _SERVICE_NAME: forecasting
+  _AR_REPO: forecasting-repo   # <-- Artifact Registry repo name
+  _AR_REGION: us-central1      # <-- adjust region where AR repo exists
