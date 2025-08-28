@@ -16,7 +16,7 @@ images:
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
-  machineType: E2_HIGHMEM_16
+  machineType: E2_HIGHCPU_32
   logging: CLOUD_LOGGING_ONLY 
 
 substitutions:
