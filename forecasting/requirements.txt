@@ -4,5 +4,7 @@ pandas
 numpy
 scikit-learn
 pyarrow
+google-auth
 google-cloud-storage
 google-cloud-bigquery
+joblib==1.4.2
