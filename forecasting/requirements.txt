@@ -7,4 +7,5 @@ pyarrow
 google-auth
 google-cloud-storage
 google-cloud-bigquery
+db-dtypes
 joblib==1.4.2
