@@ -39,7 +39,7 @@ def load_and_preprocess(df: pd.DataFrame):
             group,
             time_col="timestamp",
             value_cols="sales",
-            freq="W"  # adjust if daily/hourly
+            freq="W-MON"  # adjust if daily/hourly
         )
         series_list.append(ts)
 
@@ -48,7 +48,7 @@ def load_and_preprocess(df: pd.DataFrame):
             group,
             time_col="timestamp",
             value_cols=["on_promotion", "price"],
-            freq="W"
+            freq="W-MON"
         )
         covariates_list.append(cov)
 
