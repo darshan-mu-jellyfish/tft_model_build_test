@@ -32,7 +32,10 @@ def load_and_preprocess(df: pd.DataFrame):
     covariates_list = []
 
     for series_id, group in df.groupby("series_id_encoded"):
+        
         group = group.sort_values("timestamp")
+        # Fill missing weeks and forward-fill values
+        group = group.set_index("timestamp").asfreq("W-MON").fillna(method="ffill").reset_index()
 
         # Target
         ts = TimeSeries.from_dataframe(
