@@ -14,6 +14,7 @@ def train_model(df, model_dir="models/", forecast_horizon=4):
         hidden_size=16,
         n_epochs=10,
         random_state=42,
+        add_relative_index=True
     )
 
     model.fit(series_scaled, past_covariates=covs_scaled, verbose=True)
