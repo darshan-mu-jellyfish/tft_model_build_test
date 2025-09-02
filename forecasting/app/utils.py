@@ -35,14 +35,14 @@ def load_and_preprocess(df: pd.DataFrame):
         
         group = group.sort_values("timestamp")
         # Fill missing weeks and forward-fill values
-        group = group.set_index("timestamp").asfreq("W-MON").fillna(method="ffill").reset_index()
+        group = group.set_index("timestamp").asfreq("D").fillna(method="ffill").reset_index()
 
         # Target
         ts = TimeSeries.from_dataframe(
             group,
             time_col="timestamp",
             value_cols="sales",
-            freq="W-MON"  # adjust if daily/hourly
+            freq="D"  # adjust if daily/hourly
         )
         series_list.append(ts)
 
@@ -51,7 +51,7 @@ def load_and_preprocess(df: pd.DataFrame):
             group,
             time_col="timestamp",
             value_cols=["on_promotion", "price"],
-            freq="W-MON"
+            freq="D"
         )
         covariates_list.append(cov)
 
