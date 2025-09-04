@@ -9,13 +9,6 @@ steps:
       - --cache=false
       - --cache-ttl=12h
       - --verbosity=info
-    resources:
-      requests:
-        cpu: 4
-        memory: 8Gi
-      limits:
-        cpu: 8
-        memory: 16Gi
 
 images:
   - europe-west1-docker.pkg.dev/tr-tech-dds-dev/forecasting/tft:$SHORT_SHA
