@@ -10,10 +10,6 @@ steps:
       - --cache-ttl=12h
       - --verbosity=info
 
-images:
-  - europe-west1-docker.pkg.dev/tr-tech-dds-dev/forecasting/tft:$SHORT_SHA
-  - europe-west1-docker.pkg.dev/tr-tech-dds-dev/forecasting/tft:latest
-
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
   machineType: E2_HIGHCPU_32
