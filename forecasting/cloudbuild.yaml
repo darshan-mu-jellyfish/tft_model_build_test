@@ -6,7 +6,7 @@ steps:
       - --destination=europe-west1-docker.pkg.dev/tr-tech-dds-dev/forecasting/tft:latest
       - --context=forecasting
       - --dockerfile=Dockerfile
-      - --cache=true
+      - --cache=false
       - --cache-ttl=12h
       - --verbosity=info
     resources:
