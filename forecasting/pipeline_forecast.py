@@ -42,6 +42,9 @@ def parse_args():
     parser.add_argument("--project_id", type=str, required=True)
     parser.add_argument("--dataset", type=str, required=True)
     parser.add_argument("--table", type=str, required=True)
+    parser.add_argument("--data_source", choices=["bq", "csv"], default="bq")
+    parser.add_argument("--where", type=str, default=None)
+    parser.add_argument("--output_path", type=str, default="predictions.csv")
     return parser.parse_args()
 
 if __name__ == "__main__":
