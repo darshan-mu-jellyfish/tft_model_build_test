@@ -2,7 +2,7 @@ import kfp
 from google.cloud import aiplatform
 from tft_pipeline import pipeline, PIPELINE_ROOT, PROJECT_ID, REGION
 
-PIPELINE_JSON = "tft_train_predict_pipeline.json"
+PIPELINE_JSON = "tft_train_predict_pipeline.yaml"
 
 # Compile pipeline
 kfp.compiler.Compiler().compile(
