@@ -1,22 +1,44 @@
-# Use Python slim base
+# Use official Python 3.11 slim base image
 FROM python:3.11-slim
 
+# ------------------------------
+# System dependencies
+# ------------------------------
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        git \
+        build-essential \
+        curl \
+        wget \
+        unzip \
+        ffmpeg \
+        libsndfile1 \
+        && rm -rf /var/lib/apt/lists/*
+
+# ------------------------------
+# Set working directory
+# ------------------------------
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+# ------------------------------
+# Copy repo files
+# ------------------------------
+COPY ./app ./app
+COPY pipeline_forecast.py ./pipeline_forecast.py
+COPY tft_pipeline.py ./tft_pipeline.py
+COPY compile_and_submit.py ./compile_and_submit.py
+COPY requirements.txt ./requirements.txt
 
-# Copy requirements and install
-COPY requirements.txt .
+# ------------------------------
+# Install Python dependencies
+# ------------------------------
+RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project files
-COPY . .
+# Add Darts extras for PyTorch backend
+RUN pip install --no-cache-dir "u8darts[torch]"
 
-# Expose port for API (if needed later)
-EXPOSE 8080
-
+# ------------------------------
+# Entrypoint
+# ------------------------------
 ENTRYPOINT ["python", "pipeline_forecast.py"]
