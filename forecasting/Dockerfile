@@ -21,10 +21,9 @@ RUN apt-get update && \
 WORKDIR /app
 
 # ------------------------------
-# Copy repo files
+# Copy repo files (keep structure)
 # ------------------------------
-COPY forecasting ./forecasting
-COPY requirements.txt ./requirements.txt
+COPY . .
 
 # ------------------------------
 # Install Python dependencies
@@ -36,11 +35,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir "u8darts[torch]"
 
 # ------------------------------
-# Make forecasting a package
+# PYTHONPATH for imports
 # ------------------------------
 ENV PYTHONPATH="/app:${PYTHONPATH}"
 
 # ------------------------------
 # Entrypoint
 # ------------------------------
-ENTRYPOINT ["python", "forecasting/pipeline_forecast.py"]
+ENTRYPOINT ["python", "pipeline_forecast.py"]
