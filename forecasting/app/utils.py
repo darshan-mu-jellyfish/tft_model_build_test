@@ -102,7 +102,7 @@ def load_data_from_bq(project_id: str, dataset: str, table: str, where: str = No
 # ------------------------
 # Preprocess and create Darts TimeSeries
 # ------------------------
-def load_and_preprocess(df: pd.DataFrame):
+def preprocess_data(df: pd.DataFrame):
     """
     Convert raw dataframe into Darts TimeSeries objects.
     Combines series_id_encoded and category_encoded to create a unique series ID.
