@@ -23,10 +23,7 @@ WORKDIR /app
 # ------------------------------
 # Copy repo files
 # ------------------------------
-COPY ./app ./app
-COPY pipeline_forecast.py ./pipeline_forecast.py
-COPY tft_pipeline.py ./tft_pipeline.py
-COPY compile_and_submit.py ./compile_and_submit.py
+COPY forecasting ./forecasting
 COPY requirements.txt ./requirements.txt
 
 # ------------------------------
@@ -39,6 +36,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir "u8darts[torch]"
 
 # ------------------------------
+# Make forecasting a package
+# ------------------------------
+ENV PYTHONPATH="/app:${PYTHONPATH}"
+
+# ------------------------------
 # Entrypoint
 # ------------------------------
-ENTRYPOINT ["python", "pipeline_forecast.py"]
+ENTRYPOINT ["python", "forecasting/pipeline_forecast.py"]
